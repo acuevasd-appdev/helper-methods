@@ -1,8 +1,8 @@
 <h1>New movie</h1>
 
-<% @the_movie.errors.full_messages.each do |message| %>
-  <p style="color: red;"><%= message %></p>
-<% end %>
+<#% @the_movie.errors.full_messages.each do |message| %>
+  <#p style="color: red;"><%#= message %></p>
+<#% end %>
 
 <form action="/movies" method="post">
   <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
