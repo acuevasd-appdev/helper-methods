@@ -1,8 +1,6 @@
 class MoviesController < ApplicationController
   def new
     @the_movie = Movie.new
-    render template: "movies/new.html.erb"
-
   end
   
   def index
@@ -14,9 +12,7 @@ class MoviesController < ApplicationController
       format.json do
         render json: @list_of_movies
       end
-      format.html do
-        render template: "movies/index.html.erb"
-      end
+      format.html
     end
   end
 
@@ -27,7 +23,6 @@ class MoviesController < ApplicationController
 
     @the_movie = matching_movies.first
 
-    render template: "movies/show.html.erb"
   end
 
   def create
@@ -37,9 +32,9 @@ class MoviesController < ApplicationController
     
     if the_movie.valid?
       the_movie.save
-    else
       redirect_to movies_url, notice: "Movie created successfully."
-      render template: "movies/new.html.erb"
+    else
+      render "new"
     end
   end
 
@@ -49,7 +44,6 @@ class MoviesController < ApplicationController
     matching_movies = Movie.where({:id => the_id})
     @the_movie = matching_movies.first
 
-    render template: "movies/edit.html.erb"
   end
 
   def update
@@ -69,8 +63,8 @@ class MoviesController < ApplicationController
   end
 
   def destroy
-    the_id = params.fetch("path_id")
-    the_movie = Movie.where({ :id => the_id }).at(0)
+    the_id = params.fetch(:id)
+    the_movie = Movie.where({ :id => the_id }).first
 
     the_movie.destroy
 
