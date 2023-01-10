@@ -52,7 +52,7 @@ class MoviesController < ApplicationController
 
     the_movie.title = params.fetch("query_title")
     the_movie.description = params.fetch("query_description")
-    the_movie.released = params.fetch("query_released")
+
 
     if the_movie.valid?
       the_movie.save
